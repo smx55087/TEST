@@ -1,1 +1,0 @@
-This is a simple calculator.You can carry out the basic operations such as addition, subtraction, multiplication and division
