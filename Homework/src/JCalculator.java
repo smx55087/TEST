@@ -224,14 +224,8 @@ public class JCalculator extends JFrame implements ActionListener
 	{
 		if(sum%1==0)//没有小数部分时只显示整数，否则都显示
 			text.setText(String.valueOf((int)sum));
-		else if(sum%1!=0&&c.flag==0)
-			text.setText(String.valueOf(sum));
 		else
-		{
-			sum=(int)(sum*10000+0.5)/1;
-			sum=sum/10000;
 			text.setText(String.valueOf(sum));
-		}
 	}
 	public double Calculate(double[] a,char[] b,int top1,int front)
 	{
