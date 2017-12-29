@@ -5,16 +5,16 @@ import java.lang.Math;
 public class JCalculator extends JFrame implements ActionListener 
 {
 	private JTextField text;
-	private JButton[] b=new JButton[23];
+	private String[] str= {"  â†  ","å…¨æ¸…","æ¸…å±","+/-","1/x","7","8","9","Ã·","x*x","4","5","6","X","âˆš","1","2","3","-","=","0",".","+"};
 	double sum;
 	calculate c=new calculate();
 	public JCalculator()
 	{
-		super("±ê×¼¼ÆËãÆ÷");
+		super("æ ‡å‡†è®¡ç®—å™¨");
 		this.setBounds(700,300,500,400);
-		//this.setResizable(false);  //ÉèÖÃ´°¿Ú´óĞ¡ÊÇ·ñ¿ÉÒÔ¸Ä±ä
+		//this.setResizable(false);  //è®¾ç½®çª—å£å¤§å°æ˜¯å¦å¯ä»¥æ”¹å˜
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		GridBagLayout gbl = new GridBagLayout();  //²ÉÓÃÍø¸ñ°ü²¼¾Ö
+		GridBagLayout gbl = new GridBagLayout();  //é‡‡ç”¨ç½‘æ ¼åŒ…å¸ƒå±€
 		this.setLayout(gbl); 
 		GridBagConstraints gbs = new GridBagConstraints();  
 		gbs.fill=GridBagConstraints.BOTH;
@@ -26,32 +26,11 @@ public class JCalculator extends JFrame implements ActionListener
 		text=new JTextField("0");
 		gbl.setConstraints(text, gbs);
 		text.setHorizontalAlignment(JTextField.RIGHT);
-		text.setFont(new java.awt.Font("ºÚÌå", 5, 25));
+		text.setFont(new java.awt.Font("é»‘ä½“", 5, 25));
 		text.setEditable(false);
-		this.add(text);//Ìí¼ÓÎÄ±¾¿ò
-		b[0]=new JButton("  ¡û  ");
-		b[1]=new JButton("È«Çå");
-		b[2]=new JButton("ÇåÆÁ");
-		b[3]=new JButton("+/-");
-		b[4]=new JButton("1/x");
-		b[5]=new JButton("7");
-		b[6]=new JButton("8");
-		b[7]=new JButton("9");
-		b[8]=new JButton("¡Â");
-		b[9]=new JButton("x*x");
-		b[10]=new JButton("4");
-		b[11]=new JButton("5");
-		b[12]=new JButton("6");
-		b[13]=new JButton("X");
-		b[14]=new JButton("¡Ì");
-		b[15]=new JButton("1");
-		b[16]=new JButton("2");
-		b[17]=new JButton("3");
-		b[18]=new JButton("-");
-		b[19]=new JButton("=");
-		b[20]=new JButton("0");
-		b[21]=new JButton(".");
-		b[22]=new JButton("+");
+		this.add(text);//æ·»åŠ æ–‡æœ¬æ¡†
+		for(int i=0; i<23; i++)//æ·»åŠ æŒ‰é’®
+			b[i]=new JButton(str[i]);
 		for(int i=0; i<23; i++)
 		{
 			if(i==4||i==9||i==14)
@@ -95,8 +74,8 @@ public class JCalculator extends JFrame implements ActionListener
 			Add(0);
 		else if(e.getActionCommand().equals("X"))
 			Add2('X');
-		else if(e.getActionCommand().equals("¡Â"))
-			Add2('¡Â');
+		else if(e.getActionCommand().equals("Ã·"))
+			Add2('Ã·');
 		else if(e.getActionCommand().equals("+"))
 			Add2('+');
 		else if(e.getActionCommand().equals("-"))
@@ -105,7 +84,7 @@ public class JCalculator extends JFrame implements ActionListener
 		{
 			c.top1++;
 			c.a[c.top1]=sum;
-			if(c.top2!=-1)//µ±ÓĞÔËËã·ûÊ±²Å½øĞĞ¼ÆËã
+			if(c.top2!=-1)//å½“æœ‰è¿ç®—ç¬¦æ—¶æ‰è¿›è¡Œè®¡ç®—
 				sum=Calculate(c.a,c.b,c.top1,c.front);
 			c.flag=1;	
 			c.count=0;
@@ -132,7 +111,7 @@ public class JCalculator extends JFrame implements ActionListener
 				c.a[c.top1]=sum;
 			Print();
 		}
-		else if(e.getActionCommand().equals("¡Ì"))
+		else if(e.getActionCommand().equals("âˆš"))
 		{
 			sum=Math.sqrt(sum);
 			if(c.count==0)
@@ -145,11 +124,11 @@ public class JCalculator extends JFrame implements ActionListener
 			else c.flag=0;
 			Print();
 		}
-		else if(e.getActionCommand().equals("  ¡û  "))
+		else if(e.getActionCommand().equals("  â†  "))
 		{	
 			sum=Double.valueOf(text.getText());
 			int n=(int)sum;
-			if(c.count==0)	JOptionPane.showMessageDialog(null,"¼ÆËã½á¹û²»ÄÜÍË¸ñ£¡",null, JOptionPane.ERROR_MESSAGE);//¼ÆËã½á¹û²»ÄÜÍË¸ñ
+			if(c.count==0)	JOptionPane.showMessageDialog(null,"è®¡ç®—ç»“æœä¸èƒ½é€€æ ¼ï¼",null, JOptionPane.ERROR_MESSAGE);//è®¡ç®—ç»“æœä¸èƒ½é€€æ ¼
 			else if(sum%1==0)
 			{
 				n=n/10;
@@ -166,19 +145,19 @@ public class JCalculator extends JFrame implements ActionListener
 				c.a[c.top1]=sum;
 			Print();
 		}
-		else if(e.getActionCommand().equals("È«Çå"))
+		else if(e.getActionCommand().equals("å…¨æ¸…"))
 		{
 			Delate();
 			sum=0;
 			Print();
 		}
-		else if(e.getActionCommand().equals("ÇåÆÁ"))
+		else if(e.getActionCommand().equals("æ¸…å±"))
 		{
 			sum=0;
 			Print();
 		}
 	}
-	public void Set(JButton b,int gridwidth,int gridheight,int weightx,int weighty,int x,int y,GridBagConstraints gbs,GridBagLayout gbl,int flag)//ÉèÖÃÃ¿¸ö°´Å¥µÄÎ»ÖÃ
+	public void Set(JButton b,int gridwidth,int gridheight,int weightx,int weighty,int x,int y,GridBagConstraints gbs,GridBagLayout gbl,int flag)//è®¾ç½®æ¯ä¸ªæŒ‰é’®çš„ä½ç½®
 	{
 		b.addActionListener(this);
 		b.setForeground(Color.BLACK);
@@ -187,7 +166,7 @@ public class JCalculator extends JFrame implements ActionListener
 			b.setForeground(Color.WHITE);
 			b.setBackground(new Color(128,128,128));
 		}
-		b.setFont(new java.awt.Font("»ªÎÄçúçê", 5, 18));	
+		b.setFont(new java.awt.Font("åæ–‡ç¥ç€", 5, 18));	
 		gbs.gridwidth = gridwidth;
 		gbs.gridheight=gridheight;
 		gbs.weightx=weightx;
@@ -200,14 +179,14 @@ public class JCalculator extends JFrame implements ActionListener
 		gbl.setConstraints(b, gbs);
 		this.add(b);
 	}
-	public void Add(int n)//µã»÷Êı×Ö°´Å¥
+	public void Add(int n)//ç‚¹å‡»æ•°å­—æŒ‰é’®
 	{
-		if(c.count==0)//È«Çå
+		if(c.count==0)//å…¨æ¸…
 		{	
 			Delate();
 			sum=0;
 		}
-		if(c.flag==0)//Ğ¡Êıµã
+		if(c.flag==0)//å°æ•°ç‚¹
 		{
 			c.sum*=10;
 			sum*=c.sum;
@@ -218,7 +197,7 @@ public class JCalculator extends JFrame implements ActionListener
 			sum=sum*10+n;
 		Print();
 	}
-	public void Add2(char n)//µã»÷ÔËËã°´Å¥
+	public void Add2(char n)//ç‚¹å‡»è¿ç®—æŒ‰é’®
 	{
 		c.flag=1;
 		c.sum=1;
@@ -243,7 +222,7 @@ public class JCalculator extends JFrame implements ActionListener
 	}
 	public void Print()
 	{
-		if(sum%1==0)//Ã»ÓĞĞ¡Êı²¿·ÖÊ±Ö»ÏÔÊ¾ÕûÊı£¬·ñÔò¶¼ÏÔÊ¾
+		if(sum%1==0)//æ²¡æœ‰å°æ•°éƒ¨åˆ†æ—¶åªæ˜¾ç¤ºæ•´æ•°ï¼Œå¦åˆ™éƒ½æ˜¾ç¤º
 			text.setText(String.valueOf((int)sum));
 		else if(sum%1!=0&&c.flag==0)
 			text.setText(String.valueOf(sum));
@@ -266,14 +245,14 @@ public class JCalculator extends JFrame implements ActionListener
 					a[top1]=a[top1-1]*a[top1];
 					return a[top1];
 				}
-			case '¡Â':
+			case 'Ã·':
 				if(top1==0)
 					return a[top1];
 				else 
 				{
 					if(a[top1]==0)
 					{
-						JOptionPane.showMessageDialog(null,"³ıÊı²»ÄÜÎª0£¡ÒÑÈ«Çå£¬ÇëÖØĞÂ¼ÆËã£¡",null, JOptionPane.ERROR_MESSAGE);//¼ÆËã½á¹û²»ÄÜÍË¸ñ
+						JOptionPane.showMessageDialog(null,"é™¤æ•°ä¸èƒ½ä¸º0ï¼å·²å…¨æ¸…ï¼Œè¯·é‡æ–°è®¡ç®—ï¼",null, JOptionPane.ERROR_MESSAGE);//è®¡ç®—ç»“æœä¸èƒ½é€€æ ¼
 						Delate();
 						return 0;
 					}	
@@ -299,7 +278,7 @@ public class JCalculator extends JFrame implements ActionListener
 			}
 		return 0;
 	}
-	public void Delate()//È«Çå
+	public void Delate()//å…¨æ¸…
 	{
 		c=new calculate();
 	}
@@ -310,7 +289,7 @@ public class JCalculator extends JFrame implements ActionListener
 }
 class calculate
 {
-	public double[] a=new double[100];//Êı×ÖÕ»
-	public char[] b=new char[100];//·ûºÅÕ»
-	int top1=-1,top2=-1,front=0,count=1,flag=1,sum=1;//top1ÎªÊı×ÖÕ»,top2ÎªÔËËã·ûÕ»,countÅĞ¶Ï°´ÏÂ'='ºóÊÇ·ñÒªÈ«Çå£¬flagÅĞ¶ÏÊÇ·ñÆô¶¯Ğ¡Êıµã£¬sumÎªĞ¡Êıµã¹¦ÄÜ.
+	public double[] a=new double[100];//æ•°å­—æ ˆ
+	public char[] b=new char[100];//ç¬¦å·æ ˆ
+	int top1=-1,top2=-1,front=0,count=1,flag=1,sum=1;//top1ä¸ºæ•°å­—æ ˆ,top2ä¸ºè¿ç®—ç¬¦æ ˆ,countåˆ¤æ–­æŒ‰ä¸‹'='åæ˜¯å¦è¦å…¨æ¸…ï¼Œflagåˆ¤æ–­æ˜¯å¦å¯åŠ¨å°æ•°ç‚¹ï¼Œsumä¸ºå°æ•°ç‚¹åŠŸèƒ½.
 }
