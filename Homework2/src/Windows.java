@@ -12,8 +12,7 @@ public class Windows extends JFrame implements ActionListener
     JComplex[] j=new JComplex[100];
     JComboBox[] jc=new JComboBox[10];
 	private JButton b1,b2;
-	private JComboBox j1;
-	String[] str = {"+","-","*","/","ø’"}; 
+	String[] str = {"+","-","*","/","Á©∫"}; 
 	public Windows ()
 	{
 		jf.setLocation(700,300);
@@ -32,14 +31,14 @@ public class Windows extends JFrame implements ActionListener
 	    b2.addActionListener(this);
 	    gbl.setConstraints(b1, gbs);
 	    gbl.setConstraints(b2, gbs);
-	    //ÃÌº”◊Èº˛
+	    //Ê∑ªÂä†ÁªÑ‰ª∂
 	    jf.add(b1);
 	    Add();
 	    jf.add(b2);
 	    Add();
 	    j[1].text1.setEditable(false);
 	    j[1].text2.setEditable(false);
-	    //œ‘ æ√Ê∞Â
+	    //ÊòæÁ§∫Èù¢Êùø
 	    jf.pack();
 	    jf.setVisible(true);
 	}
@@ -67,7 +66,7 @@ public class Windows extends JFrame implements ActionListener
 		int k;
 		for(k=0; k<i-2;k++)
 		{
-			if(jc[k].getSelectedItem().equals("ø’"))
+			if(jc[k].getSelectedItem().equals("Á©∫"))
 			{
 			    j[k+2].text1.setEditable(false);
 			    j[k+2].text2.setEditable(false);
@@ -89,7 +88,7 @@ public class Windows extends JFrame implements ActionListener
 			gbl.setConstraints(jc[i-2], gbs);
 			jf.add(jc[i-2]);
 			Add();
-			//÷ÿ–¬ÃÌº”◊Ó∫Û“ª––◊Èº˛
+			//ÈáçÊñ∞Ê∑ªÂä†ÊúÄÂêé‰∏ÄË°åÁªÑ‰ª∂
  		    jf.add(b2);
 		    jf.add(j[1].text1);
 		    jf.add(j[1].label1);
@@ -100,38 +99,29 @@ public class Windows extends JFrame implements ActionListener
 		if(ev.getActionCommand().equals("="))
 		{
 			Complex[] c=new Complex[100];
-			double sum1 = 0,sum2 = 0;
-			try 
+			c[0]=new Complex(j[0].text1.getText(),j[0].text2.getText());
+			for(k=0; k<i-2;k++)
 			{
-				c[0]=new Complex(Double.parseDouble(j[0].text1.getText()),Double.parseDouble(j[0].text2.getText()));
-				for(k=0; k<i-2;k++)
+				if(jc[k].getSelectedItem().equals("+"))
 				{
-					if(jc[k].getSelectedItem().equals("+"))
-					{
-						c[k+2]=new Complex(Double.parseDouble(j[k+2].text1.getText()),Double.parseDouble(j[k+2].text2.getText()));
-						c[0].Add(c[k+2]);
-					}
-					else if(jc[k].getSelectedItem().equals("-"))
-					{
-						c[k+2]=new Complex(Double.parseDouble(j[k+2].text1.getText()),Double.parseDouble(j[k+2].text2.getText()));
-						c[0].Subtract(c[k+2]);
-					}
-					else if(jc[k].getSelectedItem().equals("*"))
-					{
-						c[k+2]=new Complex(Double.parseDouble(j[k+2].text1.getText()),Double.parseDouble(j[k+2].text2.getText()));
-						c[0].Multiply(c[k+2]);
-					}
-					else if(jc[k].getSelectedItem().equals("/"))
-					{
-						c[k+2]=new Complex(Double.parseDouble(j[k+2].text1.getText()),Double.parseDouble(j[k+2].text2.getText()));
-						c[0].Divided(c[k+2]);
-					}
+					c[k+2]=new Complex(j[k+2].text1.getText(),j[k+2].text2.getText());
+					c[0].Add(c[k+2]);
 				}
-			}
-			catch(NumberFormatException ex)
-			{
-				new MessageJDialog().showing2(ex);
-				return;
+				else if(jc[k].getSelectedItem().equals("-"))
+				{
+					c[k+2]=new Complex(j[k+2].text1.getText(),j[k+2].text2.getText());
+					c[0].Subtract(c[k+2]);
+				}
+				else if(jc[k].getSelectedItem().equals("*"))
+				{
+					c[k+2]=new Complex(j[k+2].text1.getText(),j[k+2].text2.getText());
+					c[0].Multiply(c[k+2]);
+				}
+				else if(jc[k].getSelectedItem().equals("/"))
+				{
+					c[k+2]=new Complex(j[k+2].text1.getText(),j[k+2].text2.getText());
+					c[0].Divided(c[k+2]);
+				}
 			}
 			j[1].text1.setText(String.valueOf(c[0].r));
 			if(c[0].x<0)
@@ -143,7 +133,7 @@ public class Windows extends JFrame implements ActionListener
 			{	j[1].label1.setText("+");
 				j[1].text2.setText(String.valueOf(c[0].x));
 			}
-			MaxLong();//œﬁ÷∆Œƒ±æøÚœ‘ æ≥§∂»
+			MaxLong();//ÈôêÂà∂ÊñáÊú¨Ê°ÜÊòæÁ§∫ÈïøÂ∫¶
 		}
 	}
 	public void MaxLong() {  
